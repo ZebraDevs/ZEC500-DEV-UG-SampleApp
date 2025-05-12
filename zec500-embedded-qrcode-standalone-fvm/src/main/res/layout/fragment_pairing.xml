@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_gravity="bottom">
+
+<!-- Video View -->
+<VideoView
+    android:id="@+id/video_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center"
+
+    />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:gravity="bottom|right">
+            <!-- Transparent Image View -->
+            <ImageView
+                android:id="@+id/qrImgPairing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+             />
+
+            <TextView
+                android:id="@+id/qrTextPairing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="10sp"
+                android:text="..."
+                android:textColor="#888888"
+            />
+    </LinearLayout>
+
+</FrameLayout>
+

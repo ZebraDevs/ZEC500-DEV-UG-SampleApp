@@ -1,0 +1,87 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="top|center">
+
+
+
+            <TextView
+                android:id="@+id/tvOut"
+                android:layout_width="match_parent"
+                android:layout_height="90sp"
+                android:textColor="#888888"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:text="Welcome to the ZEC500 Sample App\nI'm using Fragments and the ViewModel architecture!"/>
+
+
+            <Button
+                android:id="@+id/qrDoSomething"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(#1) DO SOME LOB STUFF"
+                android:background="#FF6200EE"
+                android:textColor="#FFFFFF"
+                android:padding="10dp"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:id="@+id/deviceDiscoverFriendlyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(#2) DISCOVER DEVICE NAME"
+                android:background="#FF6200EE"
+                android:textColor="#FFFFFF"
+                android:padding="10dp"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:id="@+id/qrButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(#3) Pair QRCode - same fragment"
+                android:background="#FF6200EE"
+                android:textColor="#FFFFFF"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/pairWithAnotherFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(#4) PAIR QRCODE - ANOTHER FRAGMENT"
+                android:background="#FF6200EE"
+                android:textColor="#FFFFFF"
+                android:padding="10dp"
+                android:layout_marginTop="10dp" />
+
+
+
+            <ImageView
+                android:id="@+id/qrImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/qrText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#888888"
+                android:textSize="16sp"
+                android:text=""
+                android:gravity="center"/>
+
+
+
+
+</LinearLayout>
+</ScrollView>
+
