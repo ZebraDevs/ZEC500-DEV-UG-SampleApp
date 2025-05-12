@@ -18,6 +18,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    applicationVariants.all {
+        val variant = this
+        outputs.all {
+            val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            output.outputFileName = "${variant.applicationId}_${variant.versionName}.apk"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

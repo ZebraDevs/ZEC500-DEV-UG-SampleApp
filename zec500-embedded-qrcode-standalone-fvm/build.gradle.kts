@@ -12,9 +12,17 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.4-qrcode over video"
+        versionName = "1.41-qrcode over video"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    applicationVariants.all {
+        val variant = this
+        outputs.all {
+            val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            output.outputFileName = "${variant.applicationId}_${variant.versionName}.apk"
+        }
     }
 
     buildTypes {

@@ -76,13 +76,13 @@ class PairingFragment : Fragment() {
         imgview.setImageBitmap( makeWhitePixelsTransparent( generateQrCode(param1!!)!! ) )
 
         val txtcaption = view.findViewById<TextView>(R.id.qrTextPairing)
-        txtcaption.text = param2!!+"    "
+        txtcaption.text = param2!!
 
         val videoView = view.findViewById<VideoView>(R.id.video_view)
 
-        val videoUri1 = Uri.parse("android.resource://com.zebra.zec500_overlay_standalone_fragmentviewmodel/${R.raw.zhc}")
+        val videoUri1 = Uri.parse("android.resource://${context?.packageName}/${R.raw.zhc}")
 
-        val videoUri2 = Uri.parse("android.resource://com.zebra.zec500_overlay_standalone_fragmentviewmodel/${R.raw.zebra_brand}")
+        val videoUri2 = Uri.parse("android.resource://${context?.packageName}/${R.raw.zebra_brand}")
 
         val videoUri = if (Math.random() < 0.5) videoUri1 else videoUri2
 
