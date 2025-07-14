@@ -135,11 +135,20 @@ class MainFragment : Fragment() {
         viewModel.navigateToSecond.observe(viewLifecycleOwner) { shouldNavigate ->
             if (shouldNavigate) {
                 val stringToShow = viewModel._textViewState.value.toString()
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.container, PairingFragment.newInstance(stringToShow, stringToShow))
-                    .addToBackStack(null)
-                    .commit()
-                viewModel.onNavigationComplete()
+
+                if (stringToShow.isNullOrEmpty() || stringToShow == "null") {
+                    viewModel.onDiscoverDeviceName("xyz")
+
+                    viewModel._textViewState.observe(viewLifecycleOwner) { value ->
+                        if (!value.isNullOrEmpty()) {
+                            val stringToShow = value
+                            launch2NDfragment(stringToShow)
+                        }
+                    }
+                }
+                else{
+                    launch2NDfragment(stringToShow)
+                }
             }
         }
 
@@ -147,6 +156,14 @@ class MainFragment : Fragment() {
             viewModel.onNavigateToSecond()
         }
 
+    }
+
+    private fun launch2NDfragment(stringToShow: String) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.container, PairingFragment.newInstance(stringToShow, stringToShow))
+            .addToBackStack(null)
+            .commit()
+        viewModel.onNavigationComplete()
     }
 
     fun requestPermissions(activity: Activity) {

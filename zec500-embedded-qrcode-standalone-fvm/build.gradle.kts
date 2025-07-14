@@ -12,7 +12,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.41-qrcode over video"
+        versionName = "1.42-qrcode over video, testing stringToShow==null"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
