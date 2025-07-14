@@ -8,7 +8,7 @@
       <SelectionState runConfigName="zec500-embedded-qrcode-standalone-fvm">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="zec500-overlay-app">
+      <SelectionState runConfigName="zec500-overlay-app-kotlin">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

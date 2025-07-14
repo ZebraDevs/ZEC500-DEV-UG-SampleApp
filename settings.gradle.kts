@@ -24,4 +24,4 @@ rootProject.name = "ZEC500-DEV-UG-SampleApp"
 include(":zec500-overlay-service")
 
 include(":zec500-embedded-qrcode-standalone-fvm")
-include(":zec500-overlay-app")
+include(":zec500-overlay-app-kotlin")

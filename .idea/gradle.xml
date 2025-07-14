@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/zec500-embedded-qrcode-standalone-fvm" />
-            <option value="$PROJECT_DIR$/zec500-overlay-app" />
+            <option value="$PROJECT_DIR$/zec500-overlay-app-kotlin" />
             <option value="$PROJECT_DIR$/zec500-overlay-service" />
           </set>
         </option>
