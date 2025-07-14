@@ -13,7 +13,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.4-DEVICE NAME DISCOVERED IN SERVICE"
+        versionName = "1.41-P2P NAME DISCOVERED IN SERVICE, ZXING IMPORT FIXED"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -65,5 +65,5 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
 
     implementation("com.google.zxing:core:3.4.1")
-    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    //implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 }
