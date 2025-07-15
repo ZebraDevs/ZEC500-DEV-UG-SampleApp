@@ -9,9 +9,15 @@
 
 # Deep Dive into the ZEC500 Developer's User Guide SampleApp: the wireless connection workflow
 
-Welcome, developers! In this article, we’ll explore the ZebraDevs/ZEC500-DEV-UG-SampleApp repository—a comprehensive sample project that demonstrates simple it is to integrate into your line of business application a ZEC500 connection workflow.
+Welcome, developers! In this article, we’ll explore the ZebraDevs/ZEC500-DEV-UG-SampleApp repository—a comprehensive sample project that demonstrates the easiness of integrating a ZEC500 connection workflow into your line of business application.
 
 ---
+
+## Know the tools we made available!
+
+Before moving on and starting a code-level integration, I'd like to remind you what's already availble to achieve the same goal.
+- The "QR Code Generator (Demo App).apk" app (its icon on the laucher appears as "HCE") provides a way to generate a QRcode for wireless connection to ZEC500 from a host device.
+- The  "com.zebra.wirelessconnect.*.apk" app runs instead on the hsot device and is used to frame/scan the QRcode generated on ZEC500 and is then used to begin and end the wireless connection workflow.
 
 ## Project Overview & Structure
 
