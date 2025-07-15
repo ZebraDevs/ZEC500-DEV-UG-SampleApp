@@ -98,7 +98,7 @@ public class OverlayService extends Service {
         if (intent != null && intent.getAction() != null) {
             switch (intent.getAction()) {
                 case ACTION_SHOW_QR:
-                    String qrData = intent.getStringExtra(EXTRA_QR_BITMAP);
+                    //String qrData = intent.getStringExtra(EXTRA_QR_BITMAP);
                     Log.i("OverlayService", "calling showOverlayView");
                     discoverer.requestDeviceInfo( new DeviceInfoCallback() {
 

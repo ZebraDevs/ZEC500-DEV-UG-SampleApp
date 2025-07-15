@@ -70,7 +70,7 @@ class Zec500OverlayServiceConsumerActivity : AppCompatActivity()  {
 
     val ACTION_SHOW_QR: String = "com.zebra.zec500_overlay_service.SHOW_QR"
     val ACTION_HIDE_QR: String = "com.zebra.zec500_overlay_service.HIDE_QR"
-    val EXTRA_QR_BITMAP: String = "qr_bitmap"
+    //val EXTRA_QR_BITMAP: String = "qr_bitmap"
 
     val ACTION_SET_CAPTION_TEXT: String = "com.zebra.zec500_overlay_service.SET_CAPTION_TEXT"
     val EXTRA_CAPTION_TEXT: String = "qr_bitmap"
@@ -101,7 +101,7 @@ class Zec500OverlayServiceConsumerActivity : AppCompatActivity()  {
                 "com.zebra.zec500_overlay_service.OverlayService"
             )
             serviceIntent.action = ACTION_SHOW_QR
-            serviceIntent.putExtra(EXTRA_QR_BITMAP, "TEST VALUE")
+            //serviceIntent.putExtra(EXTRA_QR_BITMAP, "TEST VALUE")
             startForegroundService(serviceIntent)
 
         } catch (e: Exception) {
