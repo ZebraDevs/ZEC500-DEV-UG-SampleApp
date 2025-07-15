@@ -4,16 +4,12 @@
 
 ![image](https://github.com/user-attachments/assets/63f36d05-b0ba-47f4-896f-e61f2dc40588)
 
-## SAMPLE CODE DESCRIPTION
-
-### STANDALONE APP
-![image](https://github.com/user-attachments/assets/ce72cec7-6e17-4e84-9a1b-1fc88a995515)
 
 
 
-# Deep Dive into NDZL/ZEC500-DEV-UG-SampleApp: QR Codes, Device Discovery, and Overlay Services
+# Deep Dive into the ZEC500 Developer's User Guide SampleApp: Device Discovery, QR Codes, and Overlay Services
 
-Welcome, developers! In this article, we’ll explore the NDZL/ZEC500-DEV-UG-SampleApp repository—a comprehensive sample project that demonstrates QR code generation, device-friendly name discovery, and the architecture for overlay services on Android. This repo is an excellent reference for anyone looking to understand how to build both standalone and overlay-enabled Android apps leveraging modern best practices.
+Welcome, developers! In this article, we’ll explore the ZebraDevs/ZEC500-DEV-UG-SampleApp repository—a comprehensive sample project that demonstrates simple it is to integrate into your line of business application a ZEC500 connection workflow.
 
 ---
 
