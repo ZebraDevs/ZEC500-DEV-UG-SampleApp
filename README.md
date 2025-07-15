@@ -13,7 +13,7 @@ Welcome, developers! In this article, we’ll explore the ZebraDevs/ZEC500-DEV-U
 
 ---
 
-## Know the tools we made available!
+## Know the tools we've made available!
 
 Before moving on and starting a code-level integration, I'd like to remind you what's already availble to achieve the same goal.
 - The "QR Code Generator (Demo App).apk" app (its icon on the laucher appears as "HCE") provides a way to generate a QRcode for wireless connection to ZEC500 from a host device.
