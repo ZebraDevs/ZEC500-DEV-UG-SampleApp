@@ -7,7 +7,7 @@
 
 
 
-# Deep Dive into the ZEC500 Developer's User Guide SampleApp: Device Discovery, QR Codes, and Overlay Services
+# Deep Dive into the ZEC500 Developer's User Guide SampleApp: the wireless connection workflow
 
 Welcome, developers! In this article, we’ll explore the ZebraDevs/ZEC500-DEV-UG-SampleApp repository—a comprehensive sample project that demonstrates simple it is to integrate into your line of business application a ZEC500 connection workflow.
 
