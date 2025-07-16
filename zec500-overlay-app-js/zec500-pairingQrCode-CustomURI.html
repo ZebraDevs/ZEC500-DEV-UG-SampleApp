@@ -27,6 +27,7 @@
   const interactionArea = document.getElementById('interactionArea');
   const openURIButton = document.getElementById('openURIButton');
   const hiddenFrame = document.getElementById('hiddenFrame');
+  const customURI = "zec500://scan-to-pair?SHOW_QR&SET_CAPTION_TEXT=HelloChrome!";
 
   function openCustomURI(uri) {
     hiddenFrame.src = uri;
@@ -34,8 +35,7 @@
 
   openURIButton.addEventListener('click', () => {
 
-    const customURI = "zec500://scan-to-pair?SHOW_QR&SET_CAPTION_TEXT=HelloChrome!";
-    console.log("openURIButton.addEventListener opening ",customURI)
+    console.log("openURIButton pressed: opening ",customURI)
 
     openCustomURI(customURI);
   });
@@ -43,9 +43,10 @@
 
   //// No way to access the URI on an automated event like onLoad or a Timer
   //// the following code works, but the browser prompts the user with a popup that needs to be confirmed
-  // setTimeout(function() {
-  //   window.location.href = "zec500://scan-to-pair?SHOW_QR&SET_CAPTION_TEXT=HelloTimer!";
-  // }, 3000);
+   setTimeout(function() {
+      console.log("openURI Timer elapsed: opening ",customURI)
+      openCustomURI(customURI);
+   }, 3000);
 
 
 </script>
