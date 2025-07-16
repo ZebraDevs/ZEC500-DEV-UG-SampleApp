@@ -102,7 +102,8 @@ class Zec500OverlayServiceConsumerActivity : AppCompatActivity()  {
             )
             serviceIntent.action = ACTION_SHOW_QR
             //serviceIntent.putExtra(EXTRA_QR_BITMAP, "TEST VALUE")
-            startForegroundService(serviceIntent)
+            //startForegroundService(serviceIntent)
+            startService(serviceIntent)
 
         } catch (e: Exception) {
             Log.e("msft", "onClickbtn_OVERLAYSERVICE " + e.message)
