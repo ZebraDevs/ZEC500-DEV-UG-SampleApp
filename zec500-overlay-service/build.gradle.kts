@@ -13,7 +13,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.41-P2P NAME DISCOVERED IN SERVICE, ZXING IMPORT FIXED"
+        versionName = "1.5-added EB in queries"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

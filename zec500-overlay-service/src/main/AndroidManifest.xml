@@ -45,6 +45,8 @@
 
     </application>
 
-
+<queries>
+    <package android:name="com.zebra.mdna.enterprisebrowser" />
+</queries>
 
 </manifest>
