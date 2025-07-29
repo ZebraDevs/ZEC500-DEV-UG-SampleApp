@@ -92,12 +92,7 @@ public class MITMActivity extends AppCompatActivity {
                     startForegroundService(serviceIntent);
                 }
 
-                //sleep 300ms
-                try {
-                    Thread.sleep(600);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
 
                 if(setCaptionParam!=null){
                     Log.i("MITMActivity", "SET_CAPTION_TEXT action was called with param <"+setCaptionParam+">");
