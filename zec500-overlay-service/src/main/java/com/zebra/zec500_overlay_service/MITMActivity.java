@@ -25,6 +25,10 @@ public class MITMActivity extends AppCompatActivity {
     public static final String ACTION_SET_CAPTION_TEXT = "com.zebra.zec500_overlay_service.SET_CAPTION_TEXT";
     public static final String EXTRA_CAPTION_TEXT = "qr_bitmap";
 
+    public static final String ACTION_SET_TRANSPARENT_BACKGROUND = "qr_set_transparent";
+    public static final String ACTION_SET_OVERLAY_COLOR = "qr_set_color";
+    public static final String ACTION_SET_OVERLAY_SIZE = "qr_set_size";
+    public static final String ACTION_SET_OVERLAY_POSITION = "qr_set_position";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,12 @@ public class MITMActivity extends AppCompatActivity {
                 boolean isShowQRParam = data.getQueryParameterNames().contains("SHOW_QR");
                 String setCaptionParam = data.getQueryParameter("SET_CAPTION_TEXT");
 
+                String setTransparentBackgroundParam = data.getQueryParameter("SET_TRANSPARENT_BACKGROUND");
+                String setOverlayColorParam = data.getQueryParameter("SET_OVERLAY_COLOR");
+                String setOverlaySizeParam = data.getQueryParameter("SET_OVERLAY_SIZE");
+                String setOverlayPositionParam = data.getQueryParameter("SET_OVERLAY_POSITION");
+
+
                 if( isShowQRParam ){
                     Log.i("MITMActivity", "SHOW_QR action was called");
                     Intent serviceIntent = new Intent();
@@ -105,6 +115,52 @@ public class MITMActivity extends AppCompatActivity {
                     serviceIntent.putExtra(EXTRA_CAPTION_TEXT, setCaptionParam);
                     startForegroundService(serviceIntent);
                 }
+
+                //for each of the set valriables above, generate code like for the setCaptionParam case
+                if(setTransparentBackgroundParam!=null){
+                    Log.i("MITMActivity", "SET_TRANSPARENT_BACKGROUND action was called with param <"+setTransparentBackgroundParam+">");
+                    Intent serviceIntent = new Intent();
+                    serviceIntent.setComponent(new ComponentName(
+                            "com.zebra.zec500_overlay_service",
+                            "com.zebra.zec500_overlay_service.OverlayService"
+                    ));
+                    serviceIntent.setAction(ACTION_SET_TRANSPARENT_BACKGROUND);
+                    startForegroundService(serviceIntent);
+                }
+                if(setOverlayColorParam!=null){
+                    Log.i("MITMActivity", "SET_OVERLAY_COLOR action was called with param <"+setOverlayColorParam+">");
+                    Intent serviceIntent = new Intent();
+                    serviceIntent.setComponent(new ComponentName(
+                            "com.zebra.zec500_overlay_service",
+                            "com.zebra.zec500_overlay_service.OverlayService"
+                    ));
+                    serviceIntent.setAction(ACTION_SET_OVERLAY_COLOR);
+                    serviceIntent.putExtra("overlay_color", setOverlayColorParam);
+                    startForegroundService(serviceIntent);
+                }
+                if(setOverlaySizeParam!=null){
+                    Log.i("MITMActivity", "SET_OVERLAY_SIZE action was called with param <"+setOverlaySizeParam+">");
+                    Intent serviceIntent = new Intent();
+                    serviceIntent.setComponent(new ComponentName(
+                            "com.zebra.zec500_overlay_service",
+                            "com.zebra.zec500_overlay_service.OverlayService"
+                    ));
+                    serviceIntent.setAction(ACTION_SET_OVERLAY_SIZE);
+                    serviceIntent.putExtra("overlay_size", setOverlaySizeParam);
+                    startForegroundService(serviceIntent);
+                }
+                if(setOverlayPositionParam!=null){
+                    Log.i("MITMActivity", "SET_OVERLAY_POSITION action was called with param <"+setOverlayPositionParam+">");
+                    Intent serviceIntent = new Intent();
+                    serviceIntent.setComponent(new ComponentName(
+                            "com.zebra.zec500_overlay_service",
+                            "com.zebra.zec500_overlay_service.OverlayService"
+                    ));
+                    serviceIntent.setAction(ACTION_SET_OVERLAY_POSITION);
+                    serviceIntent.putExtra("overlay_position", setOverlayPositionParam);
+                    startForegroundService(serviceIntent);
+                }
+
 
             }
         }

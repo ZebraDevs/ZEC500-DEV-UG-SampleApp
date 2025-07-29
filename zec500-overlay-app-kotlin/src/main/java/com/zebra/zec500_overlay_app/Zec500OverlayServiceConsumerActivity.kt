@@ -77,6 +77,15 @@ class Zec500OverlayServiceConsumerActivity : AppCompatActivity()  {
 
     val ACTION_SET_TRANSPARENT_BACKGROUND = "qr_set_transparent"
 
+    //generate other actions based on new additions
+    val ACTION_SET_COLOR = "qr_set_color"
+    val EXTRA_COLOR = "qr_color"
+    val ACTION_SET_SIZE = "qr_set_size"
+    val EXTRA_SIZE = "qr_size"
+    val ACTION_SET_POSITION = "qr_set_position"
+    val EXTRA_POSITION = "qr_position"
+
+
 
     fun onClickbtn_ZECSCHEMA(v: View?) {
         try {
@@ -174,6 +183,86 @@ class Zec500OverlayServiceConsumerActivity : AppCompatActivity()  {
 
         } catch (e: Exception) {
             Log.e("msft", "onClickbtn_HIDEOVERLAY " + e.message)
+        }
+    }
+
+    //generate function that returns a random rgb color as integer
+    private fun getRandomColor(): Int {
+        val r = (0..255).random()
+        val g = (0..255).random()
+        val b = (0..255).random()
+        return (r shl 16) or (g shl 8) or b
+    }
+
+    fun onClickbtn_ZECSETCOLOR(v: View?) {
+        try {
+
+            val serviceIntent = Intent()
+            serviceIntent.component = ComponentName(
+                "com.zebra.zec500_overlay_service",
+                "com.zebra.zec500_overlay_service.OverlayService"
+            )
+            serviceIntent.action = ACTION_SET_COLOR
+            serviceIntent.putExtra(EXTRA_COLOR, getRandomColor());
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(serviceIntent)
+            } else {
+                startService(serviceIntent)
+            }
+
+        } catch (e: Exception) {
+            Log.e("msft", "onClickbtn_ZECSETCOLOR " + e.message)
+        }
+    }
+
+
+    //get a random number between 100 and 500
+    private fun getRandomSize(): Int {
+        return (100..500).random()
+    }
+
+    fun onClickbtn_ZECSETSIZE(v: View?) {
+        try {
+
+            val serviceIntent = Intent()
+            serviceIntent.component = ComponentName(
+                "com.zebra.zec500_overlay_service",
+                "com.zebra.zec500_overlay_service.OverlayService"
+            )
+            serviceIntent.action = ACTION_SET_SIZE
+            serviceIntent.putExtra(EXTRA_SIZE, getRandomSize());
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(serviceIntent)
+            } else {
+                startService(serviceIntent)
+            }
+
+        } catch (e: Exception) {
+            Log.e("msft", "onClickbtn_ZECSETSIZE " + e.message)
+        }
+    }
+
+
+    fun onClickbtn_ZECSETPOSITION(v: View?) {
+        try {
+
+            val serviceIntent = Intent()
+            serviceIntent.component = ComponentName(
+                "com.zebra.zec500_overlay_service",
+                "com.zebra.zec500_overlay_service.OverlayService"
+            )
+            serviceIntent.action = ACTION_SET_POSITION
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(serviceIntent)
+            } else {
+                startService(serviceIntent)
+            }
+
+        } catch (e: Exception) {
+            Log.e("msft", "onClickbtn_ZECSETPOSITION " + e.message)
         }
     }
 

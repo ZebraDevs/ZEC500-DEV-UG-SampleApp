@@ -13,7 +13,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.2-LetterboxedVideoView, edgeToEdge, noNavbar"
+        versionName = "1.3-more APIs added"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

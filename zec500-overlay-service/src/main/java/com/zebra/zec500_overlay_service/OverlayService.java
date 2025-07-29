@@ -76,6 +76,18 @@ public class OverlayService extends Service {
     public static final String EXTRA_QR_BITMAP = "qr_bitmap";
     public static final String EXTRA_CAPTION_TEXT = "qr_bitmap";
     public static final String ACTION_SET_TRANSPARENT_BACKGROUND = "qr_set_transparent";
+    public static final String ACTION_SET_OVERLAY_COLOR = "qr_set_color";
+    public static final String ACTION_SET_OVERLAY_SIZE = "qr_set_size";
+    public static final String ACTION_SET_OVERLAY_POSITION = "qr_set_position";
+
+    String EXTRA_COLOR = "qr_color";
+
+    String EXTRA_SIZE = "qr_size";
+
+    String EXTRA_POSITION = "qr_position";
+
+    int QRColor = Color.BLACK;
+    int QRsize = 300;
 
 
     public OverlayService() {
@@ -125,10 +137,28 @@ public class OverlayService extends Service {
                     break;
                 case ACTION_SET_TRANSPARENT_BACKGROUND:
                     Log.i("OverlayService", "calling ACTION_SET_TRANSPARENT_BACKGROUND");
-
+                    // Set the background of the floating view to transparent is now the default behavior
                     break;
 
-                //other APIs can be added here. e.g. qrcode dimension, color, etc.
+                case ACTION_SET_OVERLAY_COLOR:
+                    Log.i("OverlayService", "calling ACTION_SET_OVERLAY_COLOR");
+                    QRColor = intent.getIntExtra(EXTRA_COLOR, Color.BLACK);
+                    invalidateOverlayView(floatingView, wifip2pDeviceName);
+                    break;
+                case ACTION_SET_OVERLAY_SIZE:
+                    Log.i("OverlayService", "calling ACTION_SET_OVERLAY_SIZE");
+                    QRsize = intent.getIntExtra(EXTRA_SIZE, 300);
+                    invalidateOverlayView(floatingView, wifip2pDeviceName);
+                    break;
+                case ACTION_SET_OVERLAY_POSITION:
+                    Log.i("OverlayService", "calling ACTION_SET_OVERLAY_POSITION");
+                    //generate a random number between 50 and 500
+                    params.x = (int) (Math.random() * (500 - 50 + 1)) + 50;
+                    params.y = (int) (Math.random() * (500 - 50 + 1)) + 50;
+                    invalidateOverlayView(floatingView, wifip2pDeviceName);
+                    break;
+
+                        //other APIs can be added here. e.g. qrcode dimension, color, etc.
             }
         }
         return START_STICKY;
@@ -162,6 +192,18 @@ public class OverlayService extends Service {
     }
 
 
+    void invalidateOverlayView(View floatingView1, String qrcodeData){
+        if (floatingView1.getWindowToken() != null) {
+            windowManager.removeView(floatingView1);
+            Bitmap qrbmp = generateQrCode(qrcodeData);
+            if (qrbmp != null) {
+                qrImageView.setImageBitmap( BitmapUtils.makeWhitePixelsTransparent(qrbmp) );
+            }
+            windowManager.addView(floatingView1, params);
+        }
+    }
+
+
 
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "OverlayServiceChannel";
@@ -169,13 +211,13 @@ public class OverlayService extends Service {
     private Bitmap generateQrCode(String content) {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         try {
-            int width = 300;
-            int height = 400;
+            int width = QRsize;
+            int height = QRsize;
             BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height);
             Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? QRColor : Color.WHITE);
                 }
             }
             return bitmap;

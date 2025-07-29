@@ -57,5 +57,28 @@
             android:text="SET A CAPTION"
             android:onClick="onClickbtn_ZECSETCAPTION"/>
 
+        <Button
+            android:id="@+id/btInvokeCustomURISchemaToSetColor"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_weight="1"
+            android:text="SET QRCODE COLOR"
+            android:onClick="onClickbtn_ZECSETCOLOR"/>
+        <Button
+            android:id="@+id/btInvokeCustomURISchemaToSetSize"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_weight="1"
+            android:text="SET QRCODE SIZE"
+            android:onClick="onClickbtn_ZECSETSIZE"/>
+
+
+        <Button
+            android:id="@+id/btInvokeCustomURISchemaToSetPosition"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_weight="1"
+            android:text="SET QRCODE POSITION"
+            android:onClick="onClickbtn_ZECSETPOSITION"/>
     </LinearLayout>
 </ScrollView>
