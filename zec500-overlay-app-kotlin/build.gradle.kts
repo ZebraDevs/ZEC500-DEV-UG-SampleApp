@@ -13,7 +13,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.1-TransparentQrcode-(set service SYSTEM_ALERT_WINDOW permission)"
+        versionName = "1.2-LetterboxedVideoView, edgeToEdge, noNavbar"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
