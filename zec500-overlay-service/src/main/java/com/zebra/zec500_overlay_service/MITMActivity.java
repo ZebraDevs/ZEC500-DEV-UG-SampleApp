@@ -82,17 +82,25 @@ public class MITMActivity extends AppCompatActivity {
                 String setCaptionParam = data.getQueryParameter("SET_CAPTION_TEXT");
 
                 if( isShowQRParam ){
+                    Log.i("MITMActivity", "SHOW_QR action was called");
                     Intent serviceIntent = new Intent();
                     serviceIntent.setComponent(new ComponentName(
                             "com.zebra.zec500_overlay_service",
                             "com.zebra.zec500_overlay_service.OverlayService"
                     ));
                     serviceIntent.setAction(ACTION_SHOW_QR);
-                    serviceIntent.putExtra(EXTRA_QR_BITMAP, "ZEC500-NDZL");
                     startForegroundService(serviceIntent);
                 }
 
+                //sleep 300ms
+                try {
+                    Thread.sleep(600);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 if(setCaptionParam!=null){
+                    Log.i("MITMActivity", "SET_CAPTION_TEXT action was called with param <"+setCaptionParam+">");
                     Intent serviceIntent = new Intent();
                     serviceIntent.setComponent(new ComponentName(
                             "com.zebra.zec500_overlay_service",

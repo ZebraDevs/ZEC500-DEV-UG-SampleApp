@@ -84,7 +84,7 @@ class Zec500OverlayServiceConsumerActivity : AppCompatActivity()  {
             val schemaIntent = Intent()
 
             schemaIntent.action = Intent.ACTION_VIEW
-            schemaIntent.data = Uri.parse("zec500://scan-to-pair?SHOW_QR&SET_CAPTION_TEXT=ABC123")
+            schemaIntent.data = Uri.parse("zec500://scan-to-pair?SHOW_QR")
             startActivity(schemaIntent)
 
 
@@ -92,6 +92,25 @@ class Zec500OverlayServiceConsumerActivity : AppCompatActivity()  {
             Log.e("msft", "onClickbtn_ZECSCHEMA" + e.message)
         }
     }
+
+        fun onClickbtn_ZECSETCAPTION(v: View?) {
+        try {
+
+            val schemaIntent = Intent()
+
+            schemaIntent.action = Intent.ACTION_VIEW
+            schemaIntent.data = Uri.parse("zec500://scan-to-pair?SET_CAPTION_TEXT=ABC123")
+            startActivity(schemaIntent)
+
+
+        } catch (e: Exception) {
+            Log.e("msft", "onClickbtn_ZECSCHEMA" + e.message)
+        }
+    }
+
+
+
+
     fun onClickbtn_OVERLAYSERVICE(v: View?) {
         try {
 

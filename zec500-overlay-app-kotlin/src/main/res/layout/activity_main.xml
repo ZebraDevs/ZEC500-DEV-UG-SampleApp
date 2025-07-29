@@ -49,5 +49,13 @@
             android:text="USE CUSTOM SCHEMA"
             android:onClick="onClickbtn_ZECSCHEMA"/>
 
+        <Button
+            android:id="@+id/btInvokeCustomURISchemaToSetCaption"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:layout_weight="1"
+            android:text="SET A CAPTION"
+            android:onClick="onClickbtn_ZECSETCAPTION"/>
+
     </LinearLayout>
 </ScrollView>
