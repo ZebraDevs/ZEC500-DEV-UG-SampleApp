@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import com.zebra.zec500_overlay_standalone_fragmentviewmodel.R
 import androidx.activity.enableEdgeToEdge
+import java.io.File
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,7 +88,16 @@ class PairingFragment : Fragment() {
 
         val videoUri2 = Uri.parse("android.resource://${context?.packageName}/${R.raw.zebra_brand}")
 
-        val videoUri = if (Math.random() < 0.5) videoUri1 else videoUri2
+        // Check for an external video file in the public Movies directory
+        val externalMoviesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
+        val externalVideoFile = File(externalMoviesDir, "NRFParis2025.mp4")
+        val videoUri3: Uri? = if (externalVideoFile.exists()) {
+            Uri.fromFile(externalVideoFile)
+        } else {
+            null
+        }
+
+        val videoUri = videoUri3 ?: if (Math.random() < 0.5) videoUri1 else videoUri2
 
         videoView.setVideoURI(videoUri)
         videoView.setOnPreparedListener { mediaPlayer ->

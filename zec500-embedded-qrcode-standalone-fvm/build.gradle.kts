@@ -12,7 +12,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.43-qrcode over video, video true size"
+        versionName = "1.6-external video support _sdcard_Movies_NRFParis2025.mp4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,7 +21,7 @@ android {
         val variant = this
         outputs.all {
             val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-            output.outputFileName = "${variant.applicationId}_${variant.versionName}.apk"
+            output.outputFileName = "zec500-standalone-fvm-v${variant.versionName}.apk"
         }
     }
 
