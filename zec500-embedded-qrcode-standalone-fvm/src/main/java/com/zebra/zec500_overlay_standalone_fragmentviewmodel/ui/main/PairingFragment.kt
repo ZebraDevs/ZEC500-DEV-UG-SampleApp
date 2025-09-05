@@ -52,6 +52,14 @@ class PairingFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_pairing, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        val videoView = view?.findViewById<VideoView>(R.id.video_view)
+        if (videoView != null && !videoView.isPlaying) {
+            videoView.start()
+        }
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

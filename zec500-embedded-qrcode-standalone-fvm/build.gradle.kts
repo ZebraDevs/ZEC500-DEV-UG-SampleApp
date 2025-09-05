@@ -12,7 +12,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.6-external video support _sdcard_Movies_NRFParis2025.mp4"
+        versionName = "1.61-external video support _sdcard_Movies_NRFParis2025.mp4+onResume"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
