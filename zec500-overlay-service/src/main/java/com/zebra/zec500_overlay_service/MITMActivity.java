@@ -1,11 +1,16 @@
 package com.zebra.zec500_overlay_service;
 
+import android.app.ActivityOptions;
 import android.app.ComponentCaller;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.display.DisplayManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.util.Log;
+import android.view.Display;
 
 
 import androidx.annotation.NonNull;
@@ -76,6 +81,7 @@ public class MITMActivity extends AppCompatActivity {
         Uri data = intent.getData();
 
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
+
             if ("zec500".equals(data.getScheme())) {
                 // Get the path
                 String path = data.getPath();
@@ -163,8 +169,83 @@ public class MITMActivity extends AppCompatActivity {
 
 
             }
+
+            else if("wsc".equals(data.getScheme())){
+                //Launch Chrome with the provided address
+                Log.i("MITMActivity", "wsc schema detected, launching chrome with address: "+data.toString());
+                String browser = "CHROME"; //default to chrome
+                if(data.getQueryParameterNames().contains("URL2NDDISPLAY")){
+                    String targetUrl = data.getQueryParameter("URL2NDDISPLAY");
+
+
+                    if(data.getQueryParameterNames().contains("FIREFOX"))
+                        browser = "FIREFOX";
+
+
+                    try {
+                        launchChromeOn2ndDisplay(targetUrl, browser);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        launchChromeOn2ndDisplay("https://www.zebra.com", browser);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
         }
         finish();
+    }
+
+    public void launchChromeOn2ndDisplay(String targetAddress, String browser) throws RemoteException {
+        //Launch on 2nd display if available
+        ActivityOptions ao = ActivityOptions.makeBasic();
+        int other_display_id = 0;
+        int cur_display_id = getDisplay().getDisplayId();
+        if(cur_display_id>0){
+            other_display_id = cur_display_id;
+        } else {
+            DisplayManager displayManager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+            Display[] displays = displayManager.getDisplays();
+            for (Display _d : displays) {
+                if (_d.getDisplayId() >0 ) {
+                    other_display_id = _d.getDisplayId();
+                    break;
+                }
+            }
+        }
+
+        ao.setLaunchDisplayId(other_display_id);
+
+
+
+        Bundle bao = ao.toBundle();
+
+        Log.i("MITMActivity", "launchChromeOn2ndDisplay: Launching Chrome with address: "+targetAddress+" on display ID: "+other_display_id);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(targetAddress));
+
+
+        if(browser.equals("CHROME"))
+            intent.setComponent(new ComponentName("com.android.chrome", "com.google.android.apps.chrome.Main"));
+        else
+            intent.setComponent(new ComponentName("org.mozilla.firefox", "org.mozilla.fenix.IntentReceiverActivity"));
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+                | Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                | Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
+
+        // Make tab/task more distinct
+        intent.putExtra("create_new_tab", true);
+        intent.putExtra("com.android.browser.application_id",
+                getPackageName() + ":ffx:" + System.nanoTime());
+
+        startActivity(intent, bao);
+
+
     }
 
 }

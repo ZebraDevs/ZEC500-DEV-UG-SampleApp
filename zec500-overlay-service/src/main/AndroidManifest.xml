@@ -35,10 +35,13 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:scheme="zec500"
-                    android:host="scan-to-pair"/>
-
+                <data android:scheme="zec500" android:host="scan-to-pair"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="wsc" android:host="launch-browser"/>
             </intent-filter>
 
         </activity>
@@ -47,6 +50,8 @@
 
 <queries>
     <package android:name="com.zebra.mdna.enterprisebrowser" />
+    <package android:name="org.mozilla.firefox"/>
+    <package android:name="com.android.chrome"/>
 </queries>
 
 </manifest>
