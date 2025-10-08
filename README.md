@@ -54,5 +54,5 @@ https://github.com/NDZL/-blog-A14/wiki/@-ZEC500-BLOG-IS-HERE
   - then clicking on the link "Open Browser on 2nd Display (Chrome-default)" _fails_ to steadily open another webpage on the external display. This is the _re-parenting_ browser's feature in action.
   - while clicking on "Open Browser on 2nd Display (Firefox-must be installed)" it usually opens a webpage on the external display
 
-Other links in that HMTL page cna be used to display the ZEC500 Connection QrCode as an overlay.
+The other links in that HMTL page can be used to display the ZEC500 Connection QrCode as an overlay.
 
