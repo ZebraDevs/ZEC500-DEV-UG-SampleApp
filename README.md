@@ -43,6 +43,10 @@ https://github.com/NDZL/-blog-A14/wiki/@-ZEC500-BLOG-IS-HERE
 ### Publish the Web App consuming the service and Open it
 - Publish https://github.com/ZebraDevs/ZEC500-DEV-UG-SampleApp/blob/master/zec500-overlay-app-js/zec500.html on a public web server
   - e.g. https://cxnt48.com/zec500.html
+- zec500.html is using "https://cxnt48.com/radar" as target web page for the external display. Edit it at your convenience.
 
-
+## Observe the 2-display scenario's behavior
+- If Chrome is used to open zec500.html page
+  - then clicking on the link "Open Browser on 2nd Display (Chrome-default)" _fails_ to steadily open another webpage on the external display. This is the _re-parenting_ browser's feature in action.
+  - while clicking on "Open Browser on 2nd Display (Firefox-must be installed)" it usually opens a webpage on the external display
 
