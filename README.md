@@ -56,7 +56,6 @@ https://github.com/NDZL/-blog-A14/wiki/@-ZEC500-BLOG-IS-HERE
 
 The other links in that HMTL page can be used to display the ZEC500 Connection QrCode as an overlay.
 
-The observed behavior is also shown in the following video
 
 
 
