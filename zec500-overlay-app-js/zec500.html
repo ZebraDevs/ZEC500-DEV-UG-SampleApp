@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ZEC500 Pairing QRcode Sample App and Custom URI Tester</title>
+<style>
+  #interactionArea {
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+    touch-action: none; /* Prevent default touch actions */
+  }
+  #pressureDisplay {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+
+ZEC500 Pairing QRcode Sample App and Custom URI Tester v1.4
+
+<div id="interactionArea">This sample app assumes an app defined the custom URI zec://scan-to-pair</div>
+
+<iframe id="hiddenFrame" style="display:none;"></iframe>
+
+<br>
+<br>
+<br>
+<button id="openURIButton">Show Overlay from Chrome</button>
+<br>
+<br>
+<br>
+<a id="openAppLink1" href="zec500://scan-to-pair?SHOW_QR&SET_CAPTION_TEXT=HelloFirefox!">Show Overlay from Firefox and Chrome</a>
+<br>
+<br>
+<br>
+<button id="openChromeButton">Open Browser on 2nd Display (Chrome)</button>
+<br>
+<br>
+<br>
+<a id="openAppLink2" href="wsc://launch-browser?URL2NDDISPLAY=cxnt48.com/radar">Open Browser on 2nd Display (Chrome-default)</a>
+<br>
+<br>
+<br>
+<a id="openAppLink2" href="wsc://launch-browser?URL2NDDISPLAY=cxnt48.com/radar&FIREFOX">Open Browser on 2nd Display (Firefox-must be installed)</a>
+
+<script>
+  const interactionArea = document.getElementById('interactionArea');
+  const openURIButton = document.getElementById('openURIButton');
+  const hiddenFrame = document.getElementById('hiddenFrame');
+
+  function openCustomURI(uri) {
+    hiddenFrame.src = uri;
+  }
+
+  openURIButton.addEventListener('click', () => {
+
+    const customURI = "zec500://scan-to-pair?SHOW_QR&SET_CAPTION_TEXT=HelloChrome!";
+    console.log("openURIButton.addEventListener opening ",customURI)
+
+    openCustomURI(customURI);
+  });
+
+  openChromeButton.addEventListener('click', () => {
+
+    const customURI = "wsc://launch-browser?URL2NDDISPLAY=cxnt48.com/radar";
+    console.log("openURIButton.addEventListener2 opening ",customURI)
+
+    openCustomURI(customURI);
+  });
+
+
+  //// No way to access the URI on an automated event like onLoad or a Timer
+  //// the following code works, but the browser prompts the user with a popup that needs to be confirmed
+  // setTimeout(function() {
+  //   window.location.href = "zec500://scan-to-pair?SHOW_QR&SET_CAPTION_TEXT=HelloTimer!";
+  // }, 3000);
+
+
+</script>
+
+</body>
+</html>
