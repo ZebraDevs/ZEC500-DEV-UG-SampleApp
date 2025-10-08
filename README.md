@@ -27,6 +27,7 @@ https://github.com/NDZL/-blog-A14/wiki/@-ZEC500-BLOG-IS-HERE
   
     <img width="237" height="395" alt="image" src="https://github.com/user-attachments/assets/2258e35f-3f68-41ce-b8cc-bf63366ebedf" />
   - Also, ensure the "Display over other apps" is granted
+  
     <img width="263" height="445" alt="image" src="https://github.com/user-attachments/assets/053b8d36-b428-4190-8845-7161379f2d91" />
     
 
