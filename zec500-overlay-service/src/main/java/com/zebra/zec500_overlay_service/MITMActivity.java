@@ -180,6 +180,8 @@ public class MITMActivity extends AppCompatActivity {
 
                     if(data.getQueryParameterNames().contains("FIREFOX"))
                         browser = "FIREFOX";
+                        else if(data.getQueryParameterNames().contains("EB"))
+                        browser = "ENTERPRISE_BROWSER";
 
 
                     try {
@@ -230,8 +232,10 @@ public class MITMActivity extends AppCompatActivity {
 
         if(browser.equals("CHROME"))
             intent.setComponent(new ComponentName("com.android.chrome", "com.google.android.apps.chrome.Main"));
-        else
+        else if(browser.equals("FIREFOX"))
             intent.setComponent(new ComponentName("org.mozilla.firefox", "org.mozilla.fenix.IntentReceiverActivity"));
+        else if(browser.equals("ENTERPRISE_BROWSER"))
+            intent.setComponent(new ComponentName("com.zebra.mdna.enterprisebrowser", "com.rhomobile.rhodes.RhodesActivity"));
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_NEW_DOCUMENT
