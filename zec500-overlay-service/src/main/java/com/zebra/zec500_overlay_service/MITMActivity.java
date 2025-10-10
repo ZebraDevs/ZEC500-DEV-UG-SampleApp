@@ -173,17 +173,15 @@ public class MITMActivity extends AppCompatActivity {
             else if("wsc".equals(data.getScheme())){
                 //Launch Chrome with the provided address
                 Log.i("MITMActivity", "wsc schema detected, launching chrome with address: "+data.toString());
+
                 String browser = "CHROME"; //default to chrome
+                if(data.getQueryParameterNames().contains("FIREFOX"))
+                    browser = "FIREFOX";
+                else if(data.getQueryParameterNames().contains("EB"))
+                    browser = "ENTERPRISE_BROWSER";
+
                 if(data.getQueryParameterNames().contains("URL2NDDISPLAY")){
                     String targetUrl = data.getQueryParameter("URL2NDDISPLAY");
-
-
-                    if(data.getQueryParameterNames().contains("FIREFOX"))
-                        browser = "FIREFOX";
-                        else if(data.getQueryParameterNames().contains("EB"))
-                        browser = "ENTERPRISE_BROWSER";
-
-
                     try {
                         launchChromeOn2ndDisplay(targetUrl, browser);
                     } catch (RemoteException e) {
@@ -191,7 +189,7 @@ public class MITMActivity extends AppCompatActivity {
                     }
                 } else {
                     try {
-                        launchChromeOn2ndDisplay("https://www.zebra.com", browser);
+                        launchChromeOn2ndDisplay(null, browser);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -227,15 +225,22 @@ public class MITMActivity extends AppCompatActivity {
         Bundle bao = ao.toBundle();
 
         Log.i("MITMActivity", "launchChromeOn2ndDisplay: Launching Chrome with address: "+targetAddress+" on display ID: "+other_display_id);
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(targetAddress));
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if(targetAddress!=null)
+            intent.setData(Uri.parse(""+targetAddress));
 
 
         if(browser.equals("CHROME"))
             intent.setComponent(new ComponentName("com.android.chrome", "com.google.android.apps.chrome.Main"));
         else if(browser.equals("FIREFOX"))
             intent.setComponent(new ComponentName("org.mozilla.firefox", "org.mozilla.fenix.IntentReceiverActivity"));
-        else if(browser.equals("ENTERPRISE_BROWSER"))
+        else if(browser.equals("ENTERPRISE_BROWSER")) {
+            intent.setAction(Intent.ACTION_MAIN);
+            intent.addCategory("android.intent.category.LAUNCHER");
+            intent.addCategory("android.intent.category.DEFAULT");
             intent.setComponent(new ComponentName("com.zebra.mdna.enterprisebrowser", "com.rhomobile.rhodes.RhodesActivity"));
+        }
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_NEW_DOCUMENT
@@ -244,8 +249,7 @@ public class MITMActivity extends AppCompatActivity {
 
         // Make tab/task more distinct
         intent.putExtra("create_new_tab", true);
-        intent.putExtra("com.android.browser.application_id",
-                getPackageName() + ":ffx:" + System.nanoTime());
+        intent.putExtra("com.android.browser.application_id", getPackageName() + ":ffx:" + System.nanoTime());
 
         startActivity(intent, bao);
 
