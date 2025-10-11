@@ -52,6 +52,7 @@
     <package android:name="com.zebra.mdna.enterprisebrowser" />
     <package android:name="org.mozilla.firefox"/>
     <package android:name="com.android.chrome"/>
+    <package android:name="com.ndzl.eggsbrowser"/>
 </queries>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.app.ComponentCaller;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.display.DisplayManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -172,13 +173,15 @@ public class MITMActivity extends AppCompatActivity {
 
             else if("wsc".equals(data.getScheme())){
                 //Launch Chrome with the provided address
-                Log.i("MITMActivity", "wsc schema detected, launching chrome with address: "+data.toString());
+                Log.i("MITMActivity", "wsc schema detected, launching browser with address: "+data.toString());
 
                 String browser = "CHROME"; //default to chrome
                 if(data.getQueryParameterNames().contains("FIREFOX"))
                     browser = "FIREFOX";
                 else if(data.getQueryParameterNames().contains("EB"))
                     browser = "ENTERPRISE_BROWSER";
+                else if(data.getQueryParameterNames().contains("EGGS"))
+                    browser = "EGGSBROWSER";
 
                 if(data.getQueryParameterNames().contains("URL2NDDISPLAY")){
                     String targetUrl = data.getQueryParameter("URL2NDDISPLAY");
@@ -224,7 +227,7 @@ public class MITMActivity extends AppCompatActivity {
 
         Bundle bao = ao.toBundle();
 
-        Log.i("MITMActivity", "launchChromeOn2ndDisplay: Launching Chrome with address: "+targetAddress+" on display ID: "+other_display_id);
+        Log.i("MITMActivity", "launchChromeOn2ndDisplay: Launching <"+browser+"> with address: <"+targetAddress+"> on display ID: "+other_display_id);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if(targetAddress!=null)
@@ -236,12 +239,23 @@ public class MITMActivity extends AppCompatActivity {
         else if(browser.equals("FIREFOX"))
             intent.setComponent(new ComponentName("org.mozilla.firefox", "org.mozilla.fenix.IntentReceiverActivity"));
         else if(browser.equals("ENTERPRISE_BROWSER")) {
-            intent.setAction(Intent.ACTION_MAIN);
-            intent.addCategory("android.intent.category.LAUNCHER");
-            intent.addCategory("android.intent.category.DEFAULT");
-            intent.setComponent(new ComponentName("com.zebra.mdna.enterprisebrowser", "com.rhomobile.rhodes.RhodesActivity"));
-        }
+//            PackageManager pm = this.getPackageManager();
+//            Intent appStartIntent = pm.getLaunchIntentForPackage("com.zebra.mdna.enterprisebrowser");
+//            appStartIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            if (null != appStartIntent) {
+//                this.startActivity(appStartIntent);
+//                return;
+//            }
 
+            Intent intent2 = new Intent();
+            intent2.setClassName("com.zebra.mdna.enterprisebrowser", "com.rhomobile.rhodes.RhodesActivity");
+            startActivity(intent2);
+            return;
+
+        }
+        else if(browser.equals("EGGSBROWSER")) {
+            intent.setComponent(new ComponentName("com.ndzl.eggsbrowser", "com.ndzl.eggsbrowser.SecondBrowsersEggActivity"));
+        }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_NEW_DOCUMENT
                 | Intent.FLAG_ACTIVITY_MULTIPLE_TASK

@@ -13,7 +13,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.72-Chrome,Firefox,EB on the 2nd display"
+        versionName = "1.73-Chrome,Firefox,EB,EGG BROWSER on the 2nd display"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
