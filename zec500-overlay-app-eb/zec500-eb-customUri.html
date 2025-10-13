@@ -34,7 +34,7 @@
     </head>
 
     <body onload="Javascript:loadEvent()" onunload="Javascript:unloadEvent()">
-        <h1>ZEC500 OVERLAY QRCODE IN ENTERPRISE BROWSER</h1>
+        <h1>ZEC500-OVERLAY QRCODE IN ENTERPRISE BROWSER, 2-DISPLAYS</h1>
         Sample Barcode scanner<br><br><br>
         <div id="display">
         Barcode Data: <br>
@@ -42,12 +42,7 @@
         </div><br>
 
 
-<button onclick="EB.Intent.send({intentType: EB.Intent.START_ACTIVITY, action: 'android.intent.action.VIEW', categories: ['android.intent.category.BROWSABLE'],  uri:'zec500://scan-to-pair?SHOW_QR' })">Show QR Code via START ACTIVITY and CUSTOM URI</button>
-
-
-
-
-
+        <button onclick="EB.Intent.send({intentType: EB.Intent.START_ACTIVITY, action: 'android.intent.action.VIEW', categories: ['android.intent.category.BROWSABLE'],  uri:'zec500://scan-to-pair?SHOW_QR' })">Show QR Code via START ACTIVITY and CUSTOM URI</button>
 
     </body>
 </html>

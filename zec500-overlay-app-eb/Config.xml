@@ -134,7 +134,7 @@ EnterpriseBrowser_v4.0.0.6 Configuration file
 	  
       <General>
         <Name value="Menu"/>
-        <StartPage value="file://%INSTALLDIR%/zec500-eb-intent-customuri.html" name="Menu"/>
+        <StartPage value="file://%INSTALLDIR%/zec500-eb-customUri.html" name="Menu"/>
       </General>
       
       <Scanner>
