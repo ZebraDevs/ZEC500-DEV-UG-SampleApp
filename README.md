@@ -9,7 +9,7 @@
     
     The caption is printed below the qrcode graphics in the exported image
 - the exported image is a PNG format
-- how the exported qrcode appear in File app
+- how the exported qrcode appears in File app
 
     <img width="393" height="192" alt="image" src="https://github.com/user-attachments/assets/2c6b480f-8583-4736-88a0-b205b3804b84" />
 
