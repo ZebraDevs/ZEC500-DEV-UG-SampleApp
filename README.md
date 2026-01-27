@@ -4,9 +4,17 @@
 - new, unified qrcode generation location is now [QrcodeHelper](https://github.com/ZebraDevs/ZEC500-DEV-UG-SampleApp/blob/master/zec500-embedded-qrcode-standalone-fvm/src/main/java/com/zebra/zec500_overlay_standalone_fragmentviewmodel/QrcodeHelper.kt)
 - suggested usage: see e.g. [this line](https://github.com/ZebraDevs/ZEC500-DEV-UG-SampleApp/blob/5b5174ab1c14c0670fcdaadcfea71893c78cec50/zec500-embedded-qrcode-standalone-fvm/src/main/java/com/zebra/zec500_overlay_standalone_fragmentviewmodel/ui/main/PairingFragment.kt#L97)
   - define an export path (folder and filename), e.g. `val exportedQrcodeFileName = ...`
+  - ensure the export path points to a public folder. e.g. `Environment.DIRECTORY_PICTURES`
   - when calling the _generateQrCode_ API, ensure to add the parameters `exportTo = exportedQrcodeFileName, caption = txtcaption.text.toString()`
     The caption is printer below the qrcode graphics in the exported image
 - the exported image is a PNG format
+- how the exported qrcode appear in File app
+
+    <img width="393" height="192" alt="image" src="https://github.com/user-attachments/assets/2c6b480f-8583-4736-88a0-b205b3804b84" />
+
+- and when open from File
+
+  <img width="258" height="519" alt="image" src="https://github.com/user-attachments/assets/aefbe22d-4e19-412b-bd6c-fcae767ca3a4" />
 
 ---
 
