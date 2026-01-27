@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.hardware.display.DisplayManager
 import android.os.Build
+import android.os.Environment
 import android.util.Log
 import android.view.Display
 import androidx.core.content.ContextCompat.getSystemService
@@ -19,8 +20,10 @@ import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import com.zebra.zec500_overlay_standalone_fragmentviewmodel.MainActivity
+import com.zebra.zec500_overlay_standalone_fragmentviewmodel.QrcodeHelper.Companion.generateQrCode
 import com.zebra.zec500_overlay_standalone_fragmentviewmodel.R
 import com.zebra.zec500_overlay_standalone_fragmentviewmodel.SecondaryScreenPresentation
+import java.io.File
 
 class MainViewModel(private val application: Application) : AndroidViewModel(application) {
     private val _qrCodeGenerationState = MutableLiveData<Boolean>()
@@ -65,7 +68,9 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
     fun onQrCodeButtonClick() {
         _qrCodeGenerationState.value = true
         _textQrState.value = _textViewState.value
-        _imageViewState.value = generateQrCode(_textViewState.value.toString())
+        val exportedQrcodeFileName = File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),  "/exported_qrcode.png" ).toPath()
+
+        _imageViewState.value = generateQrCode(_textViewState.value.toString(), exportTo = exportedQrcodeFileName, caption = _textViewState.value.toString())
         Log.i("MainViewModel", "QR Code button clicked")
     }
 
@@ -102,23 +107,5 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         return "Device info " + Build.FINGERPRINT
     }
 
-    private fun generateQrCode(content: String): Bitmap? {
-        val qrCodeWriter: QRCodeWriter = QRCodeWriter()
-        try {
-            val width = 300
-            val height = 400
-            val bitMatrix: BitMatrix  =
-                qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
-            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-            for (x in 0..<width) {
-                for (y in 0..<height) {
-                    bitmap.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
-                }
-            }
-            return bitmap
-        } catch (e: WriterException) {
-            e.printStackTrace()
-            return null
-        }
-    }
+
 }

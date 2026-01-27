@@ -77,7 +77,7 @@ public class DeviceFriendlyNameDiscoverer {
                     @Override
                     public void onFailure(int reason) {
                         Log.e("DeviceFriendlyNameDiscoverer", "initiateDiscovery failed: " + reason);
-                        Log.i("DeviceFriendlyNameDiscoverer", "HINTS: ensure WIFI radio is on, and that LOCATIONING SERVICES are on. Just granting location permission is not enough.");
+                        Log.i("DeviceFriendlyNameDiscoverer", "HINTS: ensure WIFI radio is on, WIFI HOTSPOT is off, and that LOCATIONING SERVICES are on. Just granting location permission is not enough.");
                         //Toast.makeText(MainActivity.this, "Peer discovery failed", Toast.LENGTH_LONG).show();
                     }
                 });

@@ -18,7 +18,11 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import com.zebra.zec500_overlay_standalone_fragmentviewmodel.R
 import androidx.activity.enableEdgeToEdge
+import com.zebra.zec500_overlay_standalone_fragmentviewmodel.QrcodeHelper
 import java.io.File
+import java.nio.file.Path
+import kotlin.printStackTrace
+import kotlin.text.get
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,11 +88,15 @@ class PairingFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
-        val imgview = view.findViewById<ImageView>(R.id.qrImgPairing)
-        imgview.setImageBitmap( makeWhitePixelsTransparent( generateQrCode(param1!!)!! ) )
-
         val txtcaption = view.findViewById<TextView>(R.id.qrTextPairing)
         txtcaption.text = param2!!
+
+        val imgview = view.findViewById<ImageView>(R.id.qrImgPairing)
+        val exportedQrcodeFileName = File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),  "/exported_qrcode.png" ).toPath()
+
+        imgview.setImageBitmap( makeWhitePixelsTransparent(QrcodeHelper.generateQrCode(param1!!, exportTo = exportedQrcodeFileName, caption = txtcaption.text.toString())!! ) )
+
+
 
         val videoView = view.findViewById<VideoView>(R.id.video_view)
 
@@ -117,25 +125,6 @@ class PairingFragment : Fragment() {
 
     }
 
-    private fun generateQrCode(content: String): Bitmap? {
-        val qrCodeWriter: QRCodeWriter = QRCodeWriter()
-        try {
-            val width = 250
-            val height = 250
-            val bitMatrix: BitMatrix  =
-                qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
-            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-            for (x in 0..<width) {
-                for (y in 0..<height) {
-                    bitmap.setPixel(x, y, if (bitMatrix.get(x, y)) Color.DKGRAY else Color.WHITE)
-                }
-            }
-            return bitmap
-        } catch (e: WriterException) {
-            e.printStackTrace()
-            return null
-        }
-    }
 
 
     private fun makeWhitePixelsTransparent(bitmap: Bitmap): Bitmap {
