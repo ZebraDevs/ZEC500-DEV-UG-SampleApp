@@ -6,7 +6,8 @@
   - define an export path (folder and filename), e.g. `val exportedQrcodeFileName = ...`
   - ensure the export path points to a public folder. e.g. `Environment.DIRECTORY_PICTURES`
   - when calling the _generateQrCode_ API, ensure to add the parameters `exportTo = exportedQrcodeFileName, caption = txtcaption.text.toString()`
-    The caption is printer below the qrcode graphics in the exported image
+    
+    The caption is printed below the qrcode graphics in the exported image
 - the exported image is a PNG format
 - how the exported qrcode appear in File app
 
