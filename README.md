@@ -1,3 +1,14 @@
+### Jan.2026 update - QRCODE EXPORT FEATURE ADDED
+
+- starting v1.7 the `zec500-embedded-qrcode-standalone-fvm` module was added an export feature for the generated qrcode
+- new, unified qrcode generation location is now [QrcodeHelper](https://github.com/ZebraDevs/ZEC500-DEV-UG-SampleApp/blob/master/zec500-embedded-qrcode-standalone-fvm/src/main/java/com/zebra/zec500_overlay_standalone_fragmentviewmodel/QrcodeHelper.kt)
+- suggested usage: see e.g. [this line](https://github.com/ZebraDevs/ZEC500-DEV-UG-SampleApp/blob/5b5174ab1c14c0670fcdaadcfea71893c78cec50/zec500-embedded-qrcode-standalone-fvm/src/main/java/com/zebra/zec500_overlay_standalone_fragmentviewmodel/ui/main/PairingFragment.kt#L97)
+  - define an export path (folder and filename), e.g. `val exportedQrcodeFileName = ...`
+  - when calling the _generateQrCode_ API, ensure to add the parameters `exportTo = exportedQrcodeFileName, caption = txtcaption.text.toString()`
+    The caption is printer below the qrcode graphics in the exported image
+- the exported image is a PNG format
+
+---
 
 ### EXTERNAL VIDEO SUPPORT
 - Starting v1.6, the following path can be used to playback an external video
