@@ -94,7 +94,7 @@ class PairingFragment : Fragment() {
         val imgview = view.findViewById<ImageView>(R.id.qrImgPairing)
         val exportedQrcodeFileName = File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),  "/exported_qrcode.png" ).toPath()
 
-        imgview.setImageBitmap( makeWhitePixelsTransparent(QrcodeHelper.generateQrCode(param1!!, exportTo = exportedQrcodeFileName, caption = txtcaption.text.toString())!! ) )
+        imgview.setImageBitmap( makeWhitePixelsTransparent(QrcodeHelper.generateQrCode(param1!!, exportTo = exportedQrcodeFileName, caption = txtcaption.text.toString(), context=requireContext().applicationContext)!! ) )
 
 
 

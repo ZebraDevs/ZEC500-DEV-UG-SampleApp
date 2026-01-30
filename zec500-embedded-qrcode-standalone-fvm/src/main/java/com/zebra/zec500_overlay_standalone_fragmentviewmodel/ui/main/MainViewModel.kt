@@ -70,7 +70,7 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         _textQrState.value = _textViewState.value
         val exportedQrcodeFileName = File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),  "/exported_qrcode.png" ).toPath()
 
-        _imageViewState.value = generateQrCode(_textViewState.value.toString(), exportTo = exportedQrcodeFileName, caption = _textViewState.value.toString())
+        _imageViewState.value = generateQrCode(_textViewState.value.toString(), exportTo = exportedQrcodeFileName, caption = _textViewState.value.toString(), context = application.applicationContext)
         Log.i("MainViewModel", "QR Code button clicked")
     }
 

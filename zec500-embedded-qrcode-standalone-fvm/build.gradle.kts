@@ -12,7 +12,7 @@ android {
         minSdk = 33
         targetSdk = 35
         versionCode = 1
-        versionName = "1.7-qrcode exported"
+        versionName = "1.71-qrcode exported via MediaStore"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

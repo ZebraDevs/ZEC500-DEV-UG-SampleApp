@@ -1,12 +1,19 @@
 package com.zebra.zec500_overlay_standalone_fragmentviewmodel
 
+import android.content.ContentValues
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
+import java.io.IOException
+import java.io.OutputStream
 import java.nio.file.Path
 import kotlin.math.ceil
 
@@ -19,7 +26,8 @@ class QrcodeHelper {
             darkColor: Int = Color.DKGRAY,
             lightColor: Int = Color.WHITE,
             exportTo: Path? = null,
-            caption: String? = null
+            caption: String? = null,
+            context: Context? = null
         ): Bitmap? {
             return try {
                 val matrix = QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, width, height)
@@ -58,17 +66,53 @@ class QrcodeHelper {
                         qrBmp
                     }
 
-                    val file = exportTo.toFile()
-                    file.parentFile?.mkdirs()
-                    file.outputStream().use { os ->
-                        exportBmp.compress(Bitmap.CompressFormat.PNG, 100, os)
-                    }
+                    saveImageToPicturesViaMediaStore(context!!, exportBmp, exportTo.fileName.toString())
+
                 }
 
                 qrBmp
             } catch (e: WriterException) {
                 e.printStackTrace()
                 null
+            }
+        }
+
+        private fun saveImageToPicturesViaMediaStore(context: Context, bitmap: Bitmap, fileName: String) {
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, "$fileName")
+                put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+                // RELATIVE_PATH is only available on Android 10 (API 29) and above
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+                    put(MediaStore.MediaColumns.IS_PENDING, 1) // Mark as pending while writing
+                }
+            }
+
+            val resolver = context.contentResolver
+            val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+            uri?.let { imageUri ->
+                try {
+                    val outputStream: OutputStream? = resolver.openOutputStream(imageUri)
+                    outputStream?.use { stream ->
+                        // Compress the bitmap to the output stream
+                        if (!bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)) {
+                            throw IOException("Failed to save bitmap")
+                        }
+                    }
+
+                    // Once finished, mark IS_PENDING as 0 so other apps can see it
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        contentValues.clear()
+                        contentValues.put(MediaStore.MediaColumns.IS_PENDING, 0)
+                        resolver.update(imageUri, contentValues, null, null)
+                    }
+
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    // Clean up the empty file if the write failed
+                    resolver.delete(imageUri, null, null)
+                }
             }
         }
     }
