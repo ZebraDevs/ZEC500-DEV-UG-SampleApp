@@ -23,7 +23,6 @@
 
 
         <Button
-            android:id="@+id/btOverlayServiceCaller"
             android:layout_width="match_parent"
             android:layout_height="92dp"
             android:layout_weight="1"
@@ -32,7 +31,6 @@
 
 
         <Button
-            android:id="@+id/btOverlayServiceCaller"
             android:layout_width="match_parent"
             android:layout_height="92dp"
             android:layout_weight="1"

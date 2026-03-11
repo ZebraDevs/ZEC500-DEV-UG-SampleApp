@@ -8,6 +8,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import java.io.File
@@ -24,12 +25,14 @@ class PairingAppSSMActivity : AppCompatActivity()  {
 
     }
 
+    lateinit var tvOut: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
+        tvOut = findViewById(R.id.textView)
 
     }
 
@@ -48,6 +51,7 @@ class PairingAppSSMActivity : AppCompatActivity()  {
 
         } catch (e: Exception) {
             Log.e("msft", "onClickbtn_SSMRESET" + e.message)
+            tvOut.text = e.message
         }
     }
 
@@ -59,6 +63,7 @@ class PairingAppSSMActivity : AppCompatActivity()  {
 
         } catch (e: Exception) {
             Log.e("msft", "onClickbtn_SSMCONFIG" + e.message)
+            tvOut.text = e.message
         }
     }
 
@@ -86,11 +91,12 @@ class PairingAppSSMActivity : AppCompatActivity()  {
                     input.copyTo(output)
                 }
                 Log.i(TAG, "copyAssetFileToExternalStorage: " + outFile.absolutePath)
+                tvOut.text = outFile.absolutePath
             }
             outFile
         } catch (e: Exception) {
             Log.e(TAG, "copyAssetFileToExternalStorage: " + e.message)
-
+            tvOut.text = e.message
             null
         }
     }
@@ -134,9 +140,10 @@ class PairingAppSSMActivity : AppCompatActivity()  {
             values.put("data_persist_required", false)
             val createdRow = this.getContentResolver().insert(cpUriQuery, values)
             Log.i(TAG, "SSM Insert File: " + createdRow.toString() + " -  " + values)
-
+            tvOut.text = "SSM Insert File: " + createdRow.toString()
         } catch (e: java.lang.Exception) {
             Log.e(TAG, "SSM Insert File - error: " + e.message + "\n\n")
+            tvOut.text = e.message
         }
     }
 
