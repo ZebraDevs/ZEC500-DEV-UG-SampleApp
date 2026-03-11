@@ -25,3 +25,4 @@ include(":zec500-overlay-service")
 
 include(":zec500-embedded-qrcode-standalone-fvm")
 include(":zec500-overlay-app-kotlin")
+include(":pairingapp-config")

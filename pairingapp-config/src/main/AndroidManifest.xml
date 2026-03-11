@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="com.zebra.securestoragemanager.securecontentprovider.PERMISSION.WRITE" />
+    <uses-permission android:name="com.zebra.securestoragemanager.securecontentprovider.PERMISSION.READ" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.AppCompat">
+
+        <activity
+            android:name=".PairingAppSSMActivity"
+            android:label="WWSC-SSM"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.zebra.pairingapp_config.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!-- Specify the directories the FileProvider can generate content URIs for. -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+    </application>
+
+    <queries>
+        <provider android:authorities="com.zebra.securestoragemanager.securecontentprovider"/>
+    </queries>
+</manifest>

@@ -1,0 +1,45 @@
+{
+"kind": "androidenterprise#managedConfiguration",
+"productId": "com.zebra.oemconfig.common",
+"managedProperty": [
+{
+"key": "tapConnect",
+"valueString": "1"
+}
+,
+{
+"key": "scanConnect",
+"valueString": "1"
+}
+,
+{
+"key": "showAvailDevices",
+"valueString": "1"
+}
+,
+{
+"key": "settingsIcon",
+"valueString": "1"
+}
+,
+{
+"key": "proximityConnection",
+"valueString": "1"
+}
+,
+{
+"key": "autoDisconnect",
+"valueString": "1"
+}
+,
+{
+"key": "autoConnect",
+"valueString": "1"
+}
+,
+{
+"key": "proximityConnectionRange",
+"valueString": "4"
+}
+]
+}
