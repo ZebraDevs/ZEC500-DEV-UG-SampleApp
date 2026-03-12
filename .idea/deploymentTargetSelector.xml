@@ -11,9 +11,6 @@
       <SelectionState runConfigName="zec500-overlay-service">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="pairingapp-ssm-json-config">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="pairingapp-config">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
